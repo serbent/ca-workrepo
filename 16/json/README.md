@@ -8,13 +8,13 @@ Modify the data to be invalid. Try posting it again. See results.
 
 
 ## JSON  02 
-Create and run the application.
-Please note, you can use these commands: 
-`make run` - run the application 
-`make stop` - stop the application
-`make logs` - show application stack logs 
-`make logsf` - continiously show application stack logs
-`make build` - build the application and run it.
+Create and run the application.<br>
+Please note, you can use these commands: <br>
+`make run` - run the application <br>
+`make stop` - stop the application <br>
+`make logs` - show application stack logs <br> 
+`make logsf` - continiously show application stack logs <br>
+`make build` - build the application and run it. <br>
 
-use `/list` endpoint to list all entered users.
+use `/list` endpoint to list all entered users. <br>
 use `/raw` endpoint to see the users in RAW JSON format. 
