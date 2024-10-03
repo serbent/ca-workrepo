@@ -24,3 +24,4 @@ Use `yamllint` to lint the `docker-compose.yaml` file. <br>
 See the recommendations. <br> 
 Insert some additional indentations (two spaces) in `docker-compose.yaml` file. (On Line 1. On line 5. On line 10.) <br>
 Run `yamllint`. How did the results change?
+
