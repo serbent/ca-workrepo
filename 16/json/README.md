@@ -18,3 +18,9 @@ Please note, you can use these commands: <br>
 
 use `/list` endpoint to list all entered users. <br>
 use `/raw` endpoint to see the users in RAW JSON format. 
+
+## YAML 03
+Use `yamllint` to lint the `docker-compose.yaml` file. <br>
+See the recommendations. <br> 
+Insert some additional indentations (two spaces) in `docker-compose.yaml` file. (On Line 1. On line 5. On line 10.) <br>
+Run `yamllint`. How did the results change?
