@@ -1,0 +1,27 @@
+services:
+  # MongoDB service
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # Go application service
+  app:
+    build: .
+    container_name: go-mongo-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/school
+    volumes:
+      - .:/app
+
+volumes:
+  mongo-data:
+
