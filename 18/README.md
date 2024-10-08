@@ -15,3 +15,27 @@
 
 Hints: 
 Use bash functions
+
+## Excercise 02
+Create a script to:
+1. Create a RG if it doesn't exist
+2. Create a virtual network. 
+3. Create a public IP 
+4. Create a backend pool
+5. Create Load Balancer(LB)
+6. Create a health probe
+7. Create a LB rule
+8. Add 3 VM to the Backend Pool. 
+
+Stuff that will be needed:
+```
+az group
+az network vnet
+az network public-ip
+az network lb address-pool
+az network lb
+az network lb probe
+az network lb rule
+az network nic ip-config address-pool
+```
+
