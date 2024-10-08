@@ -16,7 +16,7 @@
 Hints: 
 Use bash functions
 
-## Excercise 02
+## EXTRA: Excercise 02
 Create a script to:
 1. Create a RG if it doesn't exist
 2. Create a virtual network. 
