@@ -1,0 +1,42 @@
+services:
+  ubuntu:
+    build:
+      context: .
+      dockerfile: ubuntu/Dockerfile
+    container_name: ubuntu_container
+    ports:
+      - "2222:22"   # Forward port 2222 on host to 22 in container
+    restart: unless-stopped
+  alpine:
+    build:
+      context: .
+      dockerfile: alpine/Dockerfile
+    container_name: labalpine
+    ports:
+      - "2223:22"   # Forward port 2222 on host to 22 in container
+    restart: unless-stopped
+  redhat:
+    build:
+      context: .
+      dockerfile: redhat/Dockerfile
+    container_name: labredhat
+    ports:
+      - "2224:22"   # Forward port 2222 on host to 22 in container
+    restart: unless-stopped
+  debian:
+    build:
+      context: .
+      dockerfile: debian/Dockerfile
+    container_name: LabDebian
+    ports:
+      - "2225:22"   # Forward port 2222 on host to 22 in container
+    restart: unless-stopped
+  archlinux:
+    build:
+      context: .
+      dockerfile: archlinux/Dockerfile
+    container_name: LabArchlinux
+    ports:
+      - "2226:22"   # Forward port 2222 on host to 22 in container
+    restart: unless-stopped
+
