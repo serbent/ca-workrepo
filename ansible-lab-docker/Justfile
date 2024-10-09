@@ -1,0 +1,31 @@
+# Define the variable for docker compose
+DOCKER_COMPOSE := "docker compose"
+default:
+	@just -l
+# Phony tasks (they won't refer to actual files or directories)
+# In Just, you don't explicitly need .PHONY, but you can comment it out for clarity
+
+# Stop services
+stop +args:
+    {{ DOCKER_COMPOSE }} stop {{ args }}
+
+# Run services
+run +args:
+    {{ DOCKER_COMPOSE }} up {{ args }} -d
+
+# Pull the latest images
+pull:
+    {{ DOCKER_COMPOSE }} pull
+
+# Restart services
+restart +args:
+    {{ DOCKER_COMPOSE }} restart {{ args }}
+
+# Show logs
+logs +args:
+    {{ DOCKER_COMPOSE }} logs {{ args }}
+
+# Show running containers
+ps:
+    {{ DOCKER_COMPOSE }} ps
+

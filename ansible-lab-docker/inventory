@@ -1,0 +1,17 @@
+all:
+  hosts:
+    ubuntu:
+      ansible_port: 2222
+      ansible_host: 127.0.0.1
+    alpine:
+      ansible_port: 2223
+      ansible_host: 127.0.0.1
+    redhat:
+      ansible_port: 2224
+      ansible_host: 127.0.0.1
+    debian:
+      ansible_port: 2225
+      ansible_host: 127.0.0.1
+    archlinux:
+      ansible_port: 2226
+      ansible_host: 127.0.0.1

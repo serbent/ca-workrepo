@@ -20,3 +20,5 @@ logs:
 ps:
 	$(DOCKER_COMPOSE) ps
 
+build:
+	$(DOCKER_COMPOSE) up --build -d

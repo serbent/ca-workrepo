@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update package manager and install OpenSSH server and passwd utility
 RUN apt-get update && \
-    apt-get install -y openssh-server passwd && \
+    apt-get install -y openssh-server passwd python3 && \
     mkdir /var/run/sshd
 
 # Create a new user 'ansible'

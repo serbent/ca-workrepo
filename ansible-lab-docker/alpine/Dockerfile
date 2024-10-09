@@ -4,6 +4,7 @@ FROM alpine:latest
 # Install OpenSSH server and other utilities
 RUN apk update && \
     apk add --no-cache openssh && \
+#    apk add --no-cache python3 && \
     mkdir /var/run/sshd
 
 # Create a new user 'ansible'
