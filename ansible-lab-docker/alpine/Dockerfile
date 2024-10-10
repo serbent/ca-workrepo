@@ -5,6 +5,7 @@ FROM alpine:latest
 RUN apk update && \
     apk add --no-cache openssh && \
     apk add --no-cache python3 && \
+    apk add --no-cache sudo && \
     mkdir /var/run/sshd
 
 # Create a new user 'ansible'

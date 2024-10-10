@@ -4,7 +4,8 @@ FROM archlinux:latest
 # Update package manager and install OpenSSH
 RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm openssh && \
-    pacman -S --noconfirm python3
+    pacman -S --noconfirm python3 && \
+    pacman -S --noconfirm sudo
 
 # Create required directories for SSH
 RUN mkdir /var/run/sshd

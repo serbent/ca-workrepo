@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install SSH server and other necessary utilities
 RUN apt-get update && \
-    apt-get install -y openssh-server && \
+    apt-get install -y openssh-server sudo && \
     mkdir /var/run/sshd
 
 # Set root password (change it if necessary)

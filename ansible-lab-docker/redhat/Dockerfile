@@ -3,7 +3,7 @@ FROM redhat/ubi9:latest
 
 # Install OpenSSH server and other necessary utilities
 RUN yum -y update && \
-    yum -y install openssh-server passwd
+    yum -y install openssh-server passwd sudo
 
 # Create required directories for SSH
 RUN mkdir /var/run/sshd
