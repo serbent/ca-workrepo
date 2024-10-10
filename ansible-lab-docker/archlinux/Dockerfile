@@ -4,7 +4,7 @@ FROM archlinux:latest
 # Update package manager and install OpenSSH
 RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm openssh && \
-#    pacman -S --noconfirm python3
+    pacman -S --noconfirm python3
 
 # Create required directories for SSH
 RUN mkdir /var/run/sshd
@@ -17,6 +17,9 @@ RUN echo "root:password" | chpasswd
 
 # Set password for 'ansible' (optional, passwordless SSH will be used)
 RUN echo "ansible:password" | chpasswd
+
+# Add 'ansible' user to sudoers for passwordless sudo access
+RUN echo 'ansible ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Generate SSH host keys
 RUN ssh-keygen -A

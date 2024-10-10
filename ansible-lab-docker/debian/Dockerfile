@@ -18,6 +18,9 @@ RUN echo 'root:password' | chpasswd
 # Set password for 'ansible' (optional, passwordless SSH will be used)
 RUN echo 'ansible:password' | chpasswd
 
+# Add 'ansible' user to sudoers for passwordless sudo access
+RUN echo 'ansible ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 # Allow root login over SSH
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 

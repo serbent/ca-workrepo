@@ -24,6 +24,9 @@ RUN useradd -m -s /bin/bash ansible
 # Set password for 'ansible' (optional, passwordless SSH will be used)
 RUN echo 'ansible:password' | chpasswd
 
+# Add 'ansible' user to sudoers for passwordless sudo access
+RUN echo 'ansible ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 # Create .ssh directory for the ansible user and set permissions
 RUN mkdir -p /home/ansible/.ssh && \
     chown ansible:ansible /home/ansible/.ssh && \

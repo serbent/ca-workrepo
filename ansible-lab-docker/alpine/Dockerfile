@@ -4,7 +4,7 @@ FROM alpine:latest
 # Install OpenSSH server and other utilities
 RUN apk update && \
     apk add --no-cache openssh && \
-#    apk add --no-cache python3 && \
+    apk add --no-cache python3 && \
     mkdir /var/run/sshd
 
 # Create a new user 'ansible'
@@ -15,6 +15,9 @@ RUN echo "root:password" | chpasswd
 
 # Set password for 'ansible' (optional, passwordless SSH will be used)
 RUN echo "ansible:password" | chpasswd
+
+# Add 'ansible' user to sudoers for passwordless sudo access
+RUN echo 'ansible ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Generate SSH host keys
 RUN ssh-keygen -A
