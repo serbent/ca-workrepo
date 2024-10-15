@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Login to docker
-      run: docker login -u $env.DOCKER_USER -p $secret.DOCKER_PASS
+      run: docker login -u {{ $env.DOCKER_USER }} -p {{ $secrets.DOCKER_PASS }}
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag serbentas/ca-test:latest
     - name: Push image
