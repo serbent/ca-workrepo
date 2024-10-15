@@ -14,11 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Login to docker
+      run: docker login -u $env.DOCKER_USER -p $secret.DOCKER_PASS
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag serbentas/ca-test:latest
+    - name: Push image
+      run: docker push serbentas/ca-test:latest
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Run the tests whyle it's building
-      run: sleep 5; echo "Running tests"; sleep 5
