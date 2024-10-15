@@ -18,7 +18,7 @@ jobs:
     - name: Login to docker
       run: docker login -u ${{ env.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag serbentas/ca-test:latest
+      run: docker build . --file 21/example/Dockerfile --tag serbentas/ca-test:latest
     - name: Push image
       run: docker push serbentas/ca-test:latest
 
