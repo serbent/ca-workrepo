@@ -1,0 +1,11 @@
+plugin: azure.azcollection.azure_rm
+include_vm_resource_groups:
+  - CodeAcademuUA3   # Replace with your resource group name(s)
+auth_source: env      # Uses Azure CLI, Managed Identity, or Environment variables
+keyed_groups:
+  - key: tags          # Groups VMs by their tags
+    prefix: tag
+  - key: location      # Groups VMs by their location
+    prefix: location
+  - key: os_disk.os_type   # Groups VMs by their OS type (Windows/Linux)
+    prefix: os
