@@ -8,7 +8,7 @@ on:
   workflow_dispatch: 
 env:
   DOCKER_USER: serbentas
-  DOCKER_CONTEXTDIR: 21/example/
+  DOCKER_CONTEXTDIR: "21/example/"
 jobs:
 
   build:
