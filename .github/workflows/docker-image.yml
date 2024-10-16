@@ -8,6 +8,7 @@ on:
   workflow_dispatch: 
 env:
   DOCKER_USER: serbentas
+  DOCKER_CONTEXTDIR: 21/example/
 jobs:
 
   build:
@@ -19,7 +20,7 @@ jobs:
     - name: Login to docker
       run: docker login -u ${{ env.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
     - name: Build the Docker image
-      run: docker build ./21/example/Dockerfile . --tag serbentas/ca-test:latest
+      run: docker build ${{ DOCKER_CONTEXTDIR }} -f ${{ DOCKER_CONTEXTDIR }}/Dockerfile --tag serbentas/ca-test:latest
     - name: Push image
       run: docker push serbentas/ca-test:latest
 
