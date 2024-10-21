@@ -40,3 +40,5 @@ Thumbs.db
 dist/
 build/
 
+# Vagrant
+.vagrant

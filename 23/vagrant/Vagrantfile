@@ -1,0 +1,48 @@
+Vagrant.configure("2") do |config|
+  # Path to your public SSH key (modify if different)
+  ssh_pub_key = File.read(File.expand_path("~/.ssh/id_ecdsa.pub"))
+  # Define the first VM
+  config.vm.define "vm1" do |vm1|
+    vm1.vm.box = "ubuntu/bionic64"
+    vm1.vm.hostname = "vm1"
+    vm1.vm.network "private_network", type: "dhcp"
+
+    # Provision VM with the public key
+    vm1.vm.provision "shell", inline: <<-SHELL
+      mkdir -p /home/vagrant/.ssh
+      echo '#{ssh_pub_key}' >> /home/vagrant/.ssh/authorized_keys
+      chmod 600 /home/vagrant/.ssh/authorized_keys
+      chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
+    SHELL
+  end
+
+  # Define the second VM
+  config.vm.define "vm2" do |vm2|
+    vm2.vm.box = "ubuntu/bionic64"
+    vm2.vm.hostname = "vm2"
+    vm2.vm.network "private_network", type: "dhcp"
+
+    # Provision VM with the public key
+    vm2.vm.provision "shell", inline: <<-SHELL
+      mkdir -p /home/vagrant/.ssh
+      echo '#{ssh_pub_key}' >> /home/vagrant/.ssh/authorized_keys
+      chmod 600 /home/vagrant/.ssh/authorized_keys
+      chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
+    SHELL
+  end
+
+  # Define the third VM
+  config.vm.define "vm3" do |vm3|
+    vm3.vm.box = "ubuntu/bionic64"
+    vm3.vm.hostname = "vm3"
+    vm3.vm.network "private_network", type: "dhcp"
+
+    # Provision VM with the public key
+    vm3.vm.provision "shell", inline: <<-SHELL
+      mkdir -p /home/vagrant/.ssh
+      echo '#{ssh_pub_key}' >> /home/vagrant/.ssh/authorized_keys
+      chmod 600 /home/vagrant/.ssh/authorized_keys
+      chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
+    SHELL
+  end
+end

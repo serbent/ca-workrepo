@@ -1,0 +1,24 @@
+default:
+  @just -l
+# Run the VMs
+run:
+  vagrant up
+
+# Show status of VMs
+status:
+  vagrant status
+# Suspend
+suspend:
+  vagrant suspend
+
+# resume
+resume:
+  vagrant resume
+
+# Shutdown 
+stop:
+  vagrant halt
+
+# Destroy
+destroy:
+  vagrant destroy
