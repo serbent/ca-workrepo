@@ -10,7 +10,7 @@ az vm create \
     --name VM1 \
     --vnet-name MyVNet \
     --subnet MySubnet \
-    --image UbuntuLTS \
+    --image Ubuntu2204 \
     --admin-username azureuser \
     --ssh-key-value ~/.ssh/id_ed25519.pub
 
