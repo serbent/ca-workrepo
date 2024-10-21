@@ -1,4 +1,7 @@
 # Preparation to get VMs up and running on local host with Vagrant.
+## Prerequisites
+Generate a new ssh keypair that can be disposable.
+
 ## Prepare the machine
 
 1. Install Vagrant
