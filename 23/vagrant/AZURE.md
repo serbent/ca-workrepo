@@ -12,7 +12,7 @@ az vm create \
     --subnet MySubnet \
     --image UbuntuLTS \
     --admin-username azureuser \
-    --generate-ssh-keys
+    --ssh-key-value ~/.ssh/id_ed25519.pub
 
 az vm create \
     --resource-group MyPolandResourceGroup \
@@ -21,7 +21,7 @@ az vm create \
     --subnet MySubnet \
     --image Ubuntu2204 \
     --admin-username azureuser \
-    --generate-ssh-keys
+    --ssh-key-value ~/.ssh/id_ed25519.pub
 
 az vm create \
     --resource-group MyPolandResourceGroup \
@@ -30,5 +30,5 @@ az vm create \
     --subnet MySubnet \
     --image Ubuntu2204 \
     --admin-username azureuser \
-    --generate-ssh-keys
+    --ssh-key-value ~/.ssh/id_ed25519.pub
 ```
