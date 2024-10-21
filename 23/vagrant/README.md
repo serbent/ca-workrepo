@@ -21,11 +21,16 @@ sudo apt update && sudo apt install vagrant virtualbox -y
 mkdir ~/vagrant-vms
 cd ~/vagrant-vms
 ```
-3. Initialize Vagrant
+3. Export a variable
+```
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+```
+
+4. Initialize Vagrant
 ```
 vagrant init ubuntu/bionic64
 ```
-4. Create a Vagrant file
+5. Create a Vagrant file
 ```
 Vagrant.configure("2") do |config|
   # Path to your public SSH key (modify if different)
@@ -77,20 +82,20 @@ Vagrant.configure("2") do |config|
 end
 
 ```
-5. Start up Vagrant
+6. Start up Vagrant
 
 ```
 vagrant up
 ```
 
-6. SSH into the VMs
+7. SSH into the VMs
 ```
 vagrant ssh vm1   # Access VM1
 vagrant ssh vm2   # Access VM2
 vagrant ssh vm3   # Access VM3
 ```
 
-7. Managing the VMs
+8. Managing the VMs
 * Get the status
 ```
 vagrant status
