@@ -32,3 +32,13 @@ az vm create \
     --admin-username azureuser \
     --ssh-key-value ~/.ssh/id_ed25519.pub
 ```
+
+# Resize the machines if nessesary
+
+```
+az vm deallocate --resource-group MyPolandResourceGroup --name VM1
+
+az vm resize --resource-group MyPolandResourceGroup --name VM1 --size Standard_B1s
+
+az vm start --resource-group MyPolandResourceGroup --name VM1
+```

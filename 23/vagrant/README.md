@@ -130,11 +130,15 @@ run.sh
 ```
 
 ## Create an inventory. 
+!!!DEPRECATED!!!
 Get the IPs of VM by ssh'ing into them and runniing the command:
 ```
 ip addr show enp0s8
 ```
 Note the IP from the _inet_ line. 
+!!!DEPRECATED!!!
+
+Get the IPs of the VMs created in azure
 
 # Creata a pipeline
 ## Create ansible playbook
