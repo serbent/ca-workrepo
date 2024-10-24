@@ -42,3 +42,7 @@ build/
 
 # Vagrant
 .vagrant
+
+.terraform
+terraform.tfstate*
+.terraform.lock.hcl
