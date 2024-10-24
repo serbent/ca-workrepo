@@ -1,0 +1,5 @@
+# roles/myrole/tasks/main.yml
+---
+- name: Role task to display role variable
+  debug:
+    msg: "Role Variable: {{ role_var }}"

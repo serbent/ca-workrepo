@@ -1,0 +1,7 @@
+Relational databases
+these databases are best suited for structured data
+Best use for banks
+
+NoSQL databases
+these are more suitabe for high-volume unstructured data with a need for scalability and flexibility
+Best use for big data, real time analytics, content management

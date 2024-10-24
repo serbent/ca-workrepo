@@ -1,0 +1,6 @@
+# group_vars/development.yml
+db_name: dev_database
+db_user: dev_user
+db_password: dev_password
+server_port: 8080
+debug_mode: true

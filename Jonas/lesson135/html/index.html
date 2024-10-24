@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Service Web Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Multi-Service Web Application!</h1>
+    <p>This application uses Nginx as a web server, PostgreSQL as a database, Redis as a cache, and Celery for background tasks.</p>
+    <p>To test the background worker, click the button below:</p>
+    <button onclick="triggerTask()">Run Background Task</button>
+    <p id="response"></p>
+
+    <script>
+        function triggerTask() {
+            fetch('/run-task')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').innerText = data.message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>

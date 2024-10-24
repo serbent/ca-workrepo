@@ -1,0 +1,49 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1235             # Root password for MySQL
+      MYSQL_DATABASE: Duombaze              # Name of the default database
+      MYSQL_USER: Naudotojas1               # MySQL user
+      MYSQL_PASSWORD: 1234                  # Password for the user
+    volumes:
+      - mysql_data:/var/lib/mysql            # Persist MySQL data
+    ports:
+      - "3306:3306"                          # MySQL port
+    networks:
+      - my-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql                        # MySQL service name
+      PMA_PORT: 3306                    # MySQL port
+      MYSQL_ROOT_PASSWORD: 1235              # MySQL root password
+    ports:
+      - "8080:80"                            # PhpMyAdmin port
+    depends_on:
+      - mysql
+    networks:
+      - my-network
+
+  wordpress:
+    image: wordpress:latest             # Use the latest WordPress image
+    container_name: wordpress            # Name of the WordPress container
+    environment:
+      WORDPRESS_DB_HOST: mysql          # MySQL service name
+      WORDPRESS_DB_USER: NaudotojasWordPress    # MySQL user for WordPress
+      WORDPRESS_DB_PASSWORD: 1234 # Password for the MySQL user
+      WORDPRESS_DB_NAME: WordPressDuombaze      # Database name WordPress will use
+    ports:
+      - "8000:80"                       # Expose WordPress port
+    depends_on:
+      - mysql                            # Wait for MySQL to start
+    networks:
+      - my-network
+volumes:
+  mysql_data:                                # Named volume for MySQL data
+
+networks:
+  my-network:                                # Custom network to allow communication between services

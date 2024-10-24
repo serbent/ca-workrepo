@@ -1,0 +1,13 @@
+CREATE TABLE Books (^ABookID SERIAL PRIMARY KEY,^ATitle VARCHAR(200) NOT NULL,^AAuthor VARCHAR(100) NOT NULL,^AGenre VARCHAR(50),^APublished INTEGE>INSERT INTO Books (Title, Author, Genre, Published) VALUES^A('Harry Potter and the Philosophers Stone', 'J.K. Rowling', 'Fantasy', 1997),^A('The Gr>SELECT * FROM Books;
+UPDATE Books^ASET Genre = 'Sci-fi'^AWHERE Title = 'Fantasy';
+UPDATE Books^ASET Genre = 'Sci-fi'^AWHERE Title = '1984';
+SELECT * FROM Books;
+UPDATE Books^ASET title = '1984 book'^AWHERE bookid = 3;
+SELECT * FROM Books;
+DELETE FROM Books^AWHERE Title = 'The Great Gatsby';
+SELECT * FROM Books;
+.database^A.duombaze^A.exit^A;
+leave;
+.database^A.duombaze^A.exit^A;
+
+These commands were taken from psql_history

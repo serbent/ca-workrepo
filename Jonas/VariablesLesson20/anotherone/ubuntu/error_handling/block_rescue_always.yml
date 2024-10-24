@@ -1,0 +1,23 @@
+- name: Block, Rescue, and Always demonstration on Azure
+  hosts: azure  # Referencing Azure hosts
+  tasks:
+    - block:
+        - name: Attempt to start a non-existent VM
+          azure_rm_virtualmachine:
+            resource_group: CodeAcademy
+            name: non_existent_vm_name  # Replace with a non-existent VM
+            state: started  # This will fail
+
+        - name: Another task in the block
+          debug:
+            msg: "This will not run if the first command fails"
+
+      rescue:
+        - name: Handle the error
+          debug:
+            msg: "An error occurred in the block. Running rescue tasks."
+
+      always:
+        - name: Always run this task
+          debug:
+            msg: "This task always runs regardless of the block outcome."

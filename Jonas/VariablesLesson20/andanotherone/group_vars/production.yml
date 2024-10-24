@@ -1,0 +1,6 @@
+# group_vars/production.yml
+db_name: prod_database
+db_user: prod_user
+db_password: prod_password
+server_port: 80
+debug_mode: false

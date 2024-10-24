@@ -1,0 +1,4 @@
+plugin: azure.azcollection.azure_rm
+include_vm_resource_groups:
+  - CodeAcademy
+auth_source: auto

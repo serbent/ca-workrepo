@@ -1,0 +1,13 @@
+- name: Fail on specific occasion demonstration on Azure
+  hosts: azure  # Referencing Azure hosts
+  tasks:
+    - name: Check if a specific Azure VM exists
+      azure_rm_virtualmachine_facts:
+        resource_group: CodeAcademy
+        name: VM1
+      register: vm_facts
+
+    - name: Fail if the VM does not exist
+      fail:
+        msg: "The specified VM does not exist!"
+      when: not vm_facts.virtual_machines | length > 0

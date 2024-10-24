@@ -1,0 +1,17 @@
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  mongo-shell:
+    image: mongo
+    depends_on:
+      - mongodb
+    entrypoint: mongo --host mongodb
+
+volumes:
+  mongodb_data:

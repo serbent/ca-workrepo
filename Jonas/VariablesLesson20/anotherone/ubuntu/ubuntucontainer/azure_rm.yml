@@ -1,0 +1,5 @@
+plugin: azure_rm
+# Optional configuration
+resource_groups: []  # Leave empty to include all resource groups
+locations: []        # Leave empty to include all locations
+filters: []         # Leave empty for no filters

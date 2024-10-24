@@ -1,0 +1,27 @@
+# playbook.yml
+---
+- name: Configure Web Server
+  hosts: all
+  become: yes  # Use sudo to run tasks as a superuser
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Create database
+      debug:
+        msg: "Creating database {{ db_name }} with user {{ db_user }}"
+
+    - name: Set up web server configuration
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/sites-available/default
+
+    - name: Start and enable Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes

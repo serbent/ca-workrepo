@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  web:
+    image: nginx:latest
+    container_name: web
+    volumes:
+      - ./html:/usr/share/nginx/html  # Assuming you have an html directory with index.html
+    networks:
+      - app-network
+    ports:
+      - "8080:80"  # Exposing web server on port 8080
+
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      POSTGRES_DB: Duombaze
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - db-data:/var/lib/postgresql/data  # Persisting database data
+    networks:
+      - app-network
+
+  cache:
+    image: redis:latest
+    container_name: cache
+    networks:
+      - app-network
+
+  worker:
+    build:  # Build the worker image from a Dockerfile
+      context: ./worker  # Path to the directory containing the Dockerfile
+      dockerfile: Dockerfile  # Name of the Dockerfile (optional if it's named 'Dockerfile')
+    container_name: worker
+    depends_on:
+      - db
+      - cache
+    networks:
+      - app-network
+    volumes:
+      - ./worker:/app  # Assuming you have a worker directory with your worker code
+
+volumes:
+  db-data:  # Named volume for PostgreSQL data persistence
+
+networks:
+  app-network:
+    driver: bridge  # Custom bridge network for inter-service communication

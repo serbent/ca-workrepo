@@ -1,0 +1,6 @@
+- name: Ignore errors demonstration on Azure
+  hosts: azure  # This refers to the hosts in your inventory
+  tasks:
+    - name: This command will fail
+      command: /bin/false  # This command will fail
+      ignore_errors: yes  # Ignore the error

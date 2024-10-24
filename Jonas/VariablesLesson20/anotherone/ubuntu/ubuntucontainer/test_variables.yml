@@ -1,0 +1,22 @@
+---
+- name: Test different types of variables
+  hosts: ubuntu
+  vars:
+    playbook_var: "This is a variable defined in the playbook"
+  
+  tasks:
+    - name: Print inventory variable
+      debug:
+        msg: "Inventory variable (my_inventory_var): {{ my_inventory_var }}"
+  
+    - name: Print playbook variable
+      debug:
+        msg: "{{ playbook_var }}"
+
+    - name: Print role variable
+      debug:
+        msg: "Role variable (my_role_var): {{ my_role_var }}"
+
+    - name: Print command line variable
+      debug:
+        msg: "Command line variable (my_command_line_var): {{ my_command_line_var }}"

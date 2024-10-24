@@ -1,0 +1,9 @@
+---
+- name: Use secrets from Ansible Vault
+  hosts: local
+  vars_files:
+    - secrets.yml
+  tasks:
+    - name: Print the database password
+      debug:
+        msg: "The database password is {{ db_password }}"

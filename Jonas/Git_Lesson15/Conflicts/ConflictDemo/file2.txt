@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+This is the second version of file2 from main branch
+=======
+This is the second version of file2 from new-feature-branch
+>>>>>>> new-feature-branch

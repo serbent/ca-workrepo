@@ -1,0 +1,16 @@
+# playbook.yml
+---
+- name: Test variable passing in Ansible
+  hosts: all
+  roles:
+    - myrole  # Include the role
+  vars:
+    playbook_var: "This is a playbook variable"
+  tasks:
+    - name: Display variables
+      debug:
+        msg:
+          - "Inventory Variable: {{ inventory_var }}"
+          - "Playbook Variable: {{ playbook_var }}"
+          - "Role Variable: {{ role_var }}"
+          - "Command Line Variable: {{ cli_var }}"

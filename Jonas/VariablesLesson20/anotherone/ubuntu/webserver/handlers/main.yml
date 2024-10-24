@@ -1,0 +1,8 @@
+---
+# webserver/handlers/main.yml
+
+- name: Restart Apache
+  service:
+    name: apache2
+    state: restarted
+  become: yes  # Use sudo to run the command as a superuser

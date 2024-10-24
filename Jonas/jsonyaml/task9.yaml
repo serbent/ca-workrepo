@@ -1,0 +1,11 @@
+employees:
+  - firstName: John
+    lastName: Doe
+    skills:
+      - communication
+      - problem-solving
+  - firstName: Anna
+    lastName: Smith
+    skills:
+      - prpgramming
+      - preblemsqlyipg

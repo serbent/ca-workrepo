@@ -1,0 +1,7 @@
+---
+- name: Set up web server
+  hosts: webservers  # Define the group of servers you want to target
+  become: yes  # Use sudo to run the playbook with superuser privileges
+  connection: local  # Use local connection instead of SSH
+  roles:
+    - webserver  # Use the webserver role created earlier

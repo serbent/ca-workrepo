@@ -1,0 +1,65 @@
+name: Ansible Gather Info
+
+# Configure Manual Trigger
+on:
+  workflow_dispatch:
+  # publish blog using webhook
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    # - uses: dorny/paths-filter@v2
+    #   id: changes
+    #   with:
+    #     filters: |
+    #       hcloud:
+    #         - 'playbooks/hcloud/**'
+
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.x
+
+    - name: Create SSH Directory
+      run: mkdir -p ${{ github.workspace }}/.ssh 
+
+    - name: Set Ansible SSH Private Key
+      run: |
+        echo "${{ secrets.SSH_PRIVATE }}" > ${{ github.workspace }}/.ssh/id_rsa
+        chmod 400 ${{ github.workspace }}/.ssh/id_rsa
+     #   ssh-add ${{ github.workspace }}/.ssh/id_rsa | tr -d '\r'
+    - name: Generate SSH Public Key
+      run: |
+        ssh-keygen -y -f ${{ github.workspace }}/.ssh/id_rsa > ${{ github.workspace }}/.ssh/id_rsa.pub
+        chmod 400 ${{ github.workspace }}/.ssh/id_rsa.pub
+
+    - name: Print SSH Public Key
+      run: cat ${{ github.workspace }}/.ssh/id_rsa.pub
+
+    - name: Install dependencies
+      run: |
+        pip3 install ansible
+        pip3 install requests
+        pip3 install python-dateutil
+    - name: Install Ansible roles
+      run: ansible-galaxy install -r requirements.yml
+
+    - name: Set Ansible Vault Password
+      run: echo "${{ secrets.ANSIBLE_VAULT_PASS_INFI }}" > ${{ github.workspace }}/.ansible_vault_password
+
+    - name: Run Ansible Graph
+      run: ansible-inventory --inventory=${{ github.workspace }}/inventory/hcloud.yml --graph --vault-password-file ${{ github.workspace }}/.ansible_vault_password 
+
+    - name: Run Ansible Playbook to gather IP address
+      run: ansible-playbook playbooks/hcloud/gather_info.yml --vault-password-file ${{ github.workspace }}/.ansible_vault_password --private-key=${{ github.workspace }}/.ssh/id_rsa
+
+    # - name: Run Main Ansible Playbook
+    #   run: ansible-playbook lb.yml --vault-password-file ${{ github.workspace }}/.ansible_vault_password --private-key=${{ github.workspace }}/.ssh/id_rsa
+
+    # - name: Run Ansible Playbook to Update Caddy File
+    #   run: ansible-playbook playbooks/hcloud/get_ip.yml --vault-password-file ${{ github.workspace }}/.ansible_vault_password --private-key=${{ github.workspace }}/.ssh/id_rsa

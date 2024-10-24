@@ -1,0 +1,8 @@
+# inventory.yml
+all:
+  hosts:
+    server1:
+      ansible_host: 192.168.1.10
+      ansible_user: ubuntu
+      # Defining variables at the inventory level
+      inventory_var: "This is an inventory variable"

@@ -1,0 +1,11 @@
+---
+all:
+  children:
+    development:
+      hosts:
+        localhost:  # Replace with your dev server IP or hostname
+        localhost:  # Replace with your dev server IP or hostname
+    production:
+      hosts:
+        localhost:  # Replace with your prod server IP or hostname
+        localhost:  # Replace with your prod server IP or hostname
