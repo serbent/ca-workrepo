@@ -6,6 +6,15 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch: 
+    inputs:
+      name:
+        type: choice
+        description: Envornment
+        options: 
+        - test
+        - stage
+        - prod
+        default: test
 env:
   DOCKER_USER: serbentas
   DOCKER_CONTEXTDIR: "21/example/"
