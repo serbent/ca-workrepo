@@ -6,7 +6,7 @@ variable environment {
 
 module prod {
     source = "../modules"
-    region = "norwaywest"
+    region = "northeurope"
     resource_group_name = "${var.environment}-rsgp"
     virtual_network_name = "${var.environment}-vpc"
     subnet_name = "${var.environment}-subnet"
