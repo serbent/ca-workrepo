@@ -1,4 +1,0 @@
-Some random text
-This text will be pushed to git repository
-
-This line came from another branch

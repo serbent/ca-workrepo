@@ -1,3 +1,0 @@
-# roles/myrole/vars/main.yml
----
-role_var: "This is a role variable"

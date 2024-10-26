@@ -27,10 +27,17 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-    - name: Login to docker
-      run: docker login -u ${{ env.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-    - name: Build the Docker image
-      run: docker build ${{ env.DOCKER_CONTEXTDIR }} -f ${{ env.DOCKER_CONTEXTDIR }}/Dockerfile --tag serbentas/ca-test:latest
-    - name: Push image
-      run: docker push serbentas/ca-test:latest
-
+    - name: Terraform plan 
+      run: |
+        if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
+            terraform plan
+        else
+            terraform plan --target=module.${{ github.event.inputs.environment }}
+        fi
+    - name: Terraform apply
+      run: |
+        if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
+            terraform apply --auto-apprrove
+        else
+            terraform apply-autoapprove --target=module.${{ github.event.inputs.environment }}
+        fi

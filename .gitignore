@@ -46,3 +46,4 @@ build/
 .terraform
 terraform.tfstate*
 .terraform.lock.hcl
+*.plan

@@ -1,6 +1,0 @@
----
-- name: Ping all Azure VMs
-  hosts: all
-  tasks:
-    - name: Ping
-      ping:
