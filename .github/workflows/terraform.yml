@@ -47,7 +47,7 @@ jobs:
             terraform plan
         else
             terraform workspace select ${{ github.event.inputs.environment }}
-            terraform plan -out ${{ github.event.inputs.environment }}.plan
+            terraform plan -var-file vars.${{ github.event.inputs.environment }}.tfvars -out ${{ github.event.inputs.environment }}.plan
         fi
     - name: Terraform apply
       run: |
@@ -56,5 +56,5 @@ jobs:
             terraform apply --auto-apprrove
         else
             terraform workspace select ${{ github.event.inputs.environment }}
-            terraform apply --auto-approve ${{ github.event.inputs.environment }}.plan
+            terraform apply -var-file vars.${{ github.event.inputs.environment }}.tfvars --auto-approve ${{ github.event.inputs.environment }}.plan
         fi
