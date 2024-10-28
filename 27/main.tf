@@ -41,7 +41,7 @@ resource "azurerm_linux_virtual_machine" "calecture27" {
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = var.public_key
   }
 
   os_disk {
