@@ -46,7 +46,7 @@ jobs:
         if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
             terraform plan
         else
-            terraform workspace ${{ github.event.inputs.environment }}
+            terraform workspace select ${{ github.event.inputs.environment }}
             terraform plan -out ${{ github.event.inputs.environment }}.plan
         fi
     - name: Terraform apply
@@ -55,6 +55,6 @@ jobs:
         if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
             terraform apply --auto-apprrove
         else
-            terraform workspace ${{ github.event.inputs.environment }}
+            terraform workspace select ${{ github.event.inputs.environment }}
             terraform apply --auto-approve ${{ github.event.inputs.environment }}.plan
         fi
