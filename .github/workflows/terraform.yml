@@ -56,5 +56,5 @@ jobs:
             terraform apply --auto-apprrove
         else
             terraform workspace select ${{ github.event.inputs.environment }}
-            terraform apply -var-file vars.${{ github.event.inputs.environment }}.tfvars --auto-approve ${{ github.event.inputs.environment }}.plan
+            terraform --auto-approve ${{ github.event.inputs.environment }}.plan
         fi
