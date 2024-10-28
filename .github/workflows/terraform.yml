@@ -27,7 +27,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Terraform plan 
       run: |
-        cd ca-workrepo/27
+        cd 27
         if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
             terraform plan
         else
@@ -35,7 +35,7 @@ jobs:
         fi
     - name: Terraform apply
       run: |
-        cd ca-workrepo/27
+        cd 27
         if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
             terraform apply --auto-apprrove
         else
