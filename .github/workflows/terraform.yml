@@ -56,5 +56,5 @@ jobs:
             terraform apply --auto-apprrove
         else
             terraform workspace select ${{ github.event.inputs.environment }}
-            terraform --auto-approve \"${{ github.event.inputs.environment }}.plan\"
+            terraform apply --auto-approve "${{ github.event.inputs.environment }}.plan"
         fi
