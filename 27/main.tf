@@ -30,7 +30,7 @@ resource "azurerm_network_interface" "calecture27" {
 }
 
 resource "azurerm_linux_virtual_machine" "calecture27" {
-  name                = "${var.vm_name}-${terraform.workspace}"
+  name                = "${var.vm_name}${terraform.workspace}"
   resource_group_name = azurerm_resource_group.calecture27.name
   location            = azurerm_resource_group.calecture27.location
   size                = var.machine_size

@@ -31,6 +31,13 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+    
+    - name: Terraform Format
+      run: terraform fmt -check
+      
     - name: Terraform plan 
       run: |
         cd 27

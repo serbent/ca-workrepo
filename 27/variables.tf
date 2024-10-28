@@ -34,6 +34,6 @@ variable machine_size {
   description = "VM size"
   validation {
     condition = contains(["Standard_B1ls","Standard_B1ms","Standard_B1s"], var.machine_size)
-    error_message = "Value can contain only Standard_B1ls,Standard_B1ms,Standard_B1s"
+    error_message = "Value can contain only Standard_B1ls, Standard_B1ms, Standard_B1s"
   }
 }
