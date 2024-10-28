@@ -37,10 +37,11 @@ jobs:
     
     - name: Terraform Format
       run: terraform fmt -check
-      
+
     - name: Terraform plan 
       run: |
         cd 27
+        az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
         terraform init
         if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
             terraform plan
