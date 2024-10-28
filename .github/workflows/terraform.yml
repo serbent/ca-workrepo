@@ -11,7 +11,7 @@ on:
         type: choice
         description: Envornment
         options: 
-        - test
+        - dev
         - stage
         - prod
         - all
