@@ -28,6 +28,7 @@ jobs:
     - name: Terraform plan 
       run: |
         cd 27
+        terraform init
         if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
             terraform plan
         else
