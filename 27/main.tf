@@ -1,24 +1,24 @@
 resource "azurerm_resource_group" "calecture27" {
-  name     = "${var.resource_group_name}"
+  name     = "${var.resource_group_name}-${terraform.workspace}"
   location = var.region
 }
 
 resource "azurerm_virtual_network" "calecture27" {
-  name                = var.virtual_network_name
+  name                = "${var.virtual_network_name}-${terraform.workspace}"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.calecture27.location
   resource_group_name = azurerm_resource_group.calecture27.name
 }
 
 resource "azurerm_subnet" "calecture27" {
-  name                 = var.subnet_name
+  name                 = "${var.subnet_name}-${terraform.workspace}"
   resource_group_name  = azurerm_resource_group.calecture27.name
   virtual_network_name = azurerm_virtual_network.calecture27.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 
 resource "azurerm_network_interface" "calecture27" {
-  name                = "calecture27-nic"
+  name                = "calecture27-nic-${terraform.workspace}"
   location            = azurerm_resource_group.calecture27.location
   resource_group_name = azurerm_resource_group.calecture27.name
 
@@ -30,7 +30,7 @@ resource "azurerm_network_interface" "calecture27" {
 }
 
 resource "azurerm_linux_virtual_machine" "calecture27" {
-  name                = var.vm_name
+  name                = "${var.vm_name}-${terraform.workspace}"
   resource_group_name = azurerm_resource_group.calecture27.name
   location            = azurerm_resource_group.calecture27.location
   size                = var.machine_size
