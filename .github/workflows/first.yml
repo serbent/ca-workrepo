@@ -1,0 +1,19 @@
+# .github/workflows/main-workflow.yml
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Add steps for your main workflow here, such as build, test, etc.
+      - name: Run build
+        run: echo "Building project..."

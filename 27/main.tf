@@ -17,6 +17,13 @@ resource "azurerm_subnet" "calecture27" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
+resource "azurerm_public_ip" "calecture27" {
+  name                = "myPublicIP"
+  location            = azurerm_resource_group.calecture27.location
+  resource_group_name = azurerm_resource_group.calecture27.name
+  allocation_method   = "Dynamic"
+}
+
 resource "azurerm_network_interface" "calecture27" {
   name                = "calecture27-nic-${terraform.workspace}"
   location            = azurerm_resource_group.calecture27.location
@@ -26,6 +33,7 @@ resource "azurerm_network_interface" "calecture27" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.calecture27.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.calecture27.id
   }
 }
 
