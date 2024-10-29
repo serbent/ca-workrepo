@@ -1,4 +1,3 @@
-# .github/workflows/dependent-workflow.yml
 name: Dependent Workflow
 
 on:
@@ -16,6 +15,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
-      # Steps for the dependent workflow go here
       - name: Run dependent job
         run: echo "Triggered by successful completion of Main Workflow"

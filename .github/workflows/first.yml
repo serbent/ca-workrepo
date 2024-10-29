@@ -1,4 +1,3 @@
-# .github/workflows/main-workflow.yml
 name: Main Workflow
 
 on:
@@ -14,6 +13,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
-      # Add steps for your main workflow here, such as build, test, etc.
       - name: Run build
         run: echo "Building project..."
