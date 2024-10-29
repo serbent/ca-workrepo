@@ -31,5 +31,5 @@ jobs:
     - name: Build the Docker image
       run: docker build ${{ env.DOCKER_CONTEXTDIR }} -f ${{ env.DOCKER_CONTEXTDIR }}/Dockerfile --tag serbentas/ca-test:latest
     - name: Push image
-      run: docker push serbentas/ca-test:latest
+      run: docker push ${{ env.DOCKER_USER }}/ca-test:latest
 
