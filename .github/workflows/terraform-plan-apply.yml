@@ -57,4 +57,4 @@ jobs:
       with:
         name: terraform_output
         path: |
-          output
+          27/output
