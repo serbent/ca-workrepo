@@ -1,10 +1,6 @@
 name: Terraform plan / apply
 
 on:
-  # push:
-  #   branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
   workflow_dispatch: 
     inputs:
       environment:
@@ -14,7 +10,6 @@ on:
         - dev
         - stage
         - prod
-        - all
         default: test
   
 
@@ -43,18 +38,10 @@ jobs:
         cd 27
         az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
         terraform init
-        if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
-            terraform plan
-        else
-            terraform workspace select ${{ github.event.inputs.environment }}
-            terraform plan -var-file vars.${{ github.event.inputs.environment }}.tfvars -out ${{ github.event.inputs.environment }}.plan
-        fi
+        terraform workspace select ${{ github.event.inputs.environment }}
+        terraform plan -var-file vars.${{ github.event.inputs.environment }}.tfvars -out ${{ github.event.inputs.environment }}.plan
     - name: Terraform apply
       run: |
         cd 27
-        if [[ "${{ github.event.inputs.environment }}" == "all" ]]; then
-            terraform apply --auto-apprrove
-        else
-            terraform workspace select ${{ github.event.inputs.environment }}
-            terraform apply --auto-approve "${{ github.event.inputs.environment }}.plan"
-        fi
+        terraform workspace select ${{ github.event.inputs.environment }}
+        terraform apply --auto-approve "${{ github.event.inputs.environment }}.plan"
