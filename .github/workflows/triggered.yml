@@ -5,6 +5,7 @@ on:
     workflows: ["Main Workflow"]  # Name of the first workflow
     types:
       - completed  # Trigger only on completion of the first workflow
+  workflow_dispatch:
 
 jobs:
   run_on_success:
