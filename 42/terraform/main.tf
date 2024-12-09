@@ -195,8 +195,6 @@ module ec_1 {
   aws_lb_target_group = aws_lb_target_group.catargetgroup.arn
 }
 
-
-
 module ec_2 {
   source            = "./modules/ec2"
   ami_id            = "ami-0b5673b5f6e8f7fa7"
@@ -209,7 +207,6 @@ module ec_2 {
   aws_lb_target_group = aws_lb_target_group.catargetgroup.arn
 }
 
-
 module ec_3 {
   source            = "./modules/ec2"
   ami_id            = "ami-0b5673b5f6e8f7fa7"
@@ -221,4 +218,3 @@ module ec_3 {
   security_groups    = [aws_security_group.https.id, aws_security_group.ssh.id]
   aws_lb_target_group = aws_lb_target_group.catargetgroup.arn
 }
-
