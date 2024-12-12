@@ -13,7 +13,6 @@ resource "aws_iam_policy" "read_only_policy" {
         Effect   = "Allow",
         Action   = [
           "ec2:Describe*",
-        #   "ec2:Create*",
           "s3:Get*",
           "s3:List*"
         ],
