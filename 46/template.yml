@@ -51,4 +51,4 @@ Resources:
 
 Outputs:
   RestApiUrl:
-    Value: !Sub "https://${CarsRestApi}.execute-api.${AWS::Region}.amazonaws.com/dev/"
+    Value: !Sub "https://${CarsRestApi}.execute-api.${AWS::Region}.amazonaws.com/dev/car"
