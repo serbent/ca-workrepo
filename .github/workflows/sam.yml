@@ -1,0 +1,42 @@
+name: SAM for 46
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./46
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1  # Replace with your AWS region
+
+      - name: Install SAM
+        run: |
+          curl https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip -L -o aws-sam-cli-linux-x86_64.zip
+          unzip aws-sam-cli-linux-x86_64.zip
+          ./sam-installation/install
+      
+      - name: Check SAM 
+        run: sam --version 
+
+      - name: Validate
+        run: sam validate
+      
+      - name: Build
+        run: sam build
+
+      - name: Deploy
+        run: sam deploy
