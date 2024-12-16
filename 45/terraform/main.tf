@@ -8,7 +8,6 @@ variable "lambda_role_name" {
   description = "Name of the existing IAM role for Lambda"
   type        = string
   default     = "CALambdaRole"
-  # ARN  = arn:aws:iam::034362059178:role/CALambdaRole
 }
 
 variable "lambda_filename" {
@@ -51,16 +50,6 @@ provider "aws" {
   region = var.region
 }
 
-# IAM Role and Policy from Data Block
-data "aws_iam_policy_document" "lambda_assume_role" {
-  statement {
-    actions = ["sts:AssumeRole"]
-    principals {
-      type        = "Service"
-      identifiers = ["lambda.amazonaws.com"]
-    }
-  }
-}
 
 data "aws_iam_role" "lambda_execution_role" {
   name = var.lambda_role_name
@@ -70,7 +59,7 @@ data "aws_iam_role" "lambda_execution_role" {
 resource "aws_lambda_function" "cars_function" {
   filename         = var.lambda_filename
   function_name    = var.function_name
-  handler          = "function.lambda_handler"
+  handler          = "function.lambda_handler"  # filename.function(in file e.g. function.py inside def lamda_handler)
   runtime          = var.python_version
   role             = data.aws_iam_role.lambda_execution_role.arn
 
@@ -126,7 +115,12 @@ resource "aws_api_gateway_method_response" "response_200" {
 resource "aws_api_gateway_deployment" "cars_deployment" {
   depends_on = [aws_api_gateway_integration.lambda_integration]
   rest_api_id = aws_api_gateway_rest_api.cars_api.id
-  stage_name  = "prod"
+}
+
+resource "aws_api_gateway_stage" "example" {
+  deployment_id = aws_api_gateway_deployment.cars_deployment.id
+  rest_api_id   = aws_api_gateway_rest_api.cars_api.id
+  stage_name    = "prod"
 }
 
 # Lambda Permission to Allow API Gateway to Invoke It
