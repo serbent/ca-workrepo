@@ -23,11 +23,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1  # Replace with your AWS region
 
-      - name: Install SAM
-        run: |
-          curl https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip -L -o aws-sam-cli-linux-x86_64.zip
-          unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
-          ./sam-installation/install
+      # - name: Install SAM
+      #   run: |
+      #     curl https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip -L -o aws-sam-cli-linux-x86_64.zip
+      #     unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
+      #     ./sam-installation/install
       
       - name: Check SAM 
         run: sam --version 
