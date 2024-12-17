@@ -34,7 +34,7 @@ resource "aws_iam_role" "github_actions_role" {
         Action = "sts:AssumeRoleWithWebIdentity",
         Condition = {
           StringLike = {
-            "token.actions.githubusercontent.com:sub" = "repo:<YOUR_GITHUB_ORG>/<YOUR_REPO>:*"
+            "token.actions.githubusercontent.com:sub" = "repo:serbent/ca-workrepo:*"
           }
         }
       }
