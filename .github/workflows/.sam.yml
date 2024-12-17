@@ -3,7 +3,8 @@ name: SAM for 46
 on:
   push:
     branches:
-      - main
+      # - main
+      - dev
 
 jobs:
   build:
