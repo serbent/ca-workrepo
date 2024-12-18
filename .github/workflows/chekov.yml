@@ -1,4 +1,4 @@
-name: :feelsgood: Terraform Chekov
+name: Terraform Chekov
 
 on:
   workflow_dispatch: 
