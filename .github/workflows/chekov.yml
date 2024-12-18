@@ -1,0 +1,24 @@
+name: Terraform Chekov
+
+on:
+  workflow_dispatch: 
+    inputs:
+      environment:
+        type: choice
+        description: Envornment
+        options: 
+        - dev
+        - stage
+        - prod
+        default: test
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Test with Checkov
+          id: checkov
+          uses: bridgecrewio/checkov-action@master
+          with:
+          directory: 45/examplea
+          framework: terraform

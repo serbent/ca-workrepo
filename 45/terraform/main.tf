@@ -57,11 +57,11 @@ data "aws_iam_role" "lambda_execution_role" {
 
 # Lambda Function Resource
 resource "aws_lambda_function" "cars_function" {
-  filename         = var.lambda_filename
-  function_name    = var.function_name
-  handler          = "function.lambda_handler"  # filename.function(in file e.g. function.py inside def lamda_handler)
-  runtime          = var.python_version
-  role             = data.aws_iam_role.lambda_execution_role.arn
+  filename      = var.lambda_filename
+  function_name = var.function_name
+  handler       = "function.lambda_handler" # filename.function(in file e.g. function.py inside def lamda_handler)
+  runtime       = var.python_version
+  role          = data.aws_iam_role.lambda_execution_role.arn
 
   environment {
     variables = {
@@ -94,14 +94,20 @@ resource "aws_api_gateway_method" "post_method" {
 
 # API Gateway Integration
 resource "aws_api_gateway_integration" "lambda_integration" {
-  rest_api_id = aws_api_gateway_rest_api.cars_api.id
-  resource_id = aws_api_gateway_resource.cars_resource.id
-  http_method = aws_api_gateway_method.post_method.http_method
-  content_handling        = "CONVERT_TO_TEXT"
+  rest_api_id      = aws_api_gateway_rest_api.cars_api.id
+  resource_id      = aws_api_gateway_resource.cars_resource.id
+  http_method      = aws_api_gateway_method.post_method.http_method
+  content_handling = "CONVERT_TO_TEXT"
 
   integration_http_method = "POST"
   type                    = "AWS"
   uri                     = aws_lambda_function.cars_function.invoke_arn
+}
+resource "aws_api_gateway_integration_response" "integration_response" {
+  rest_api_id = aws_api_gateway_rest_api.cars_api.id
+  resource_id = aws_api_gateway_resource.cars_resource.id
+  http_method = aws_api_gateway_method.post_method.http_method
+  status_code = aws_api_gateway_method_response.response_200.status_code
 }
 
 resource "aws_api_gateway_method_response" "response_200" {
@@ -113,7 +119,7 @@ resource "aws_api_gateway_method_response" "response_200" {
 
 # API Gateway Deployment
 resource "aws_api_gateway_deployment" "cars_deployment" {
-  depends_on = [aws_api_gateway_integration.lambda_integration]
+  depends_on  = [aws_api_gateway_integration.lambda_integration]
   rest_api_id = aws_api_gateway_rest_api.cars_api.id
 }
 
