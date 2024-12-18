@@ -15,3 +15,6 @@ jobs:
 
       - name: Run build
         run: echo "Building project..."
+      
+      - name: Changes pushed from machine
+        run: echo "This was written on the local machine" 
