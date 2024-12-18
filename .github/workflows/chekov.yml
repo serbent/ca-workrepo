@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - name: Test with Checkov
-          id: checkov
-          uses: bridgecrewio/checkov-action@master
-          with:
+      - name: Test with Checkov
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
           directory: 45/examplea
           framework: terraform
