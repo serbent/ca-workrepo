@@ -6,6 +6,6 @@
     runner_version: 2.267.1
     runner_config_name: my_runner
     runner_config_labels: "linux,x-large"
-    runner_config_token: AAGBUNNEXG3RFD3P32SKIK3HOLWGM
+    runner_config_token: 
   roles:
     - role: ansible-github-action-runner
