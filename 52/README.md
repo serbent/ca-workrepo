@@ -11,4 +11,6 @@
     1. Test that the name has an environment suffix
     2. Check that there is a "environment" tag. 
     3. Check the machine type is of type t2.micro. 
-* Try to write code that doens't pass test, see results.  
+* Try to write code that doens't pass test, see results. 
+* Delete resource from terraform state with `terraform rm` and import it back.
+* Rename a resource in your configuration and move it with `terraform mv`. 
