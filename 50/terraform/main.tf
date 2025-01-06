@@ -38,7 +38,8 @@ module "aws_vpc" {
 }
 
 module github_ec2{
-source = "https://github.com/terraform-aws-modules/terraform-aws-ec2-instance.git?ref=v5.7.1"
+source = "terraform-aws-modules/ec2-instance/aws"
+version = "v5.7.1"
 name = "${local.short_environment}-coudacademy-${count.index + 1}"
 count = local.instance_count
   instance_type          = local.selected_instance_type
@@ -52,12 +53,5 @@ count = local.instance_count
     Terraform   = "true"
     Environment = "dev"
   }
-}
-
-output public_ip = {
-  value       = module.github_ec2.public_ip
-  sensitive   = false
-  description = "description"
-  depends_on  = []
 }
 
