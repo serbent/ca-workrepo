@@ -1,0 +1,25 @@
+name: Prepare Docker VM with ansible
+
+on:
+  workflow_dispatch: 
+    inputs:
+      IP:
+        type: string
+        description: IP Address of the machine
+        default:
+      workdir:
+        type: string
+        description: Path to Ansible code
+        default: 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.event.inputs.environment }}
+
+    steps:
+        - uses: actions/checkout@v4
+
+        - name: Prepare Docker VM with ansible
+          run: ansible-playbook -user ec2_user -i ${{ github.event.inputs.IP }}, ${{ github.event.inputs.workdir }}/playbook.yml

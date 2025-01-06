@@ -1,0 +1,77 @@
+---
+- name: Install Docker on a VM
+  hosts: all
+  become: true
+
+  tasks:
+    # Update the package manager cache
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    # Install required packages
+    - name: Install required packages for Docker
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    # Add Docker's official GPG key
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    # Add Docker repository to the package manager
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        state: present
+
+    # Update the package manager cache again
+    - name: Update apt cache after adding Docker repo
+      apt:
+        update_cache: yes
+
+    # Install Docker packages
+    - name: Install Docker
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+
+    # Enable and start the Docker service
+    - name: Enable and start Docker service
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+    # Add the current user to the Docker group
+    - name: Add current user to the Docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    # Ensure the current user is added to the Docker group (optional reboot or logout note)
+    - name: Print logout message
+      debug:
+        msg: >
+          The user '{{ ansible_user }}' has been added to the 'docker' group.
+          Please log out and log back in for this change to take effect.
+
+    # Verify Docker installation (optional step)
+    - name: Verify Docker installation
+      command: docker --version
+      register: docker_version
+      ignore_errors: yes
+
+    - name: Print Docker version
+      debug:
+        msg: "Docker installed successfully: {{ docker_version.stdout }}"
