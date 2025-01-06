@@ -46,10 +46,18 @@ count = local.instance_count
   monitoring             = true
   vpc_security_group_ids = [module.aws_vpc.default_security_group_id]
   subnet_id              = module.aws_vpc.public_subnets[0]
+  associate_public_ip_address = true
 
   tags = {
     Terraform   = "true"
     Environment = "dev"
   }
+}
+
+output public_ip = {
+  value       = module.github_ec2.public_ip
+  sensitive   = false
+  description = "description"
+  depends_on  = []
 }
 
