@@ -38,7 +38,7 @@ module "aws_vpc" {
 }
 
 module github_ec2{
-source = "git@github.com:terraform-aws-modules/terraform-aws-ec2-instance.git?ref=v5.7.1"
+source = "https://github.com/terraform-aws-modules/terraform-aws-ec2-instance.git?ref=v5.7.1"
 name = "${local.short_environment}-coudacademy-${count.index + 1}"
 count = local.instance_count
   instance_type          = local.selected_instance_type
