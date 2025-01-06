@@ -1,4 +1,4 @@
-name: Terraform Chekov
+name: Terraform Mock Stuff
 
 on:
   workflow_dispatch: 
