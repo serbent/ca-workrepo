@@ -6,7 +6,7 @@ on:
       environment:
         type: string
         description: Path to Terraform code
-        default: 50/terraform
+        default: 54/terraform
   
 
 jobs:
