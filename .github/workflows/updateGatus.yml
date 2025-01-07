@@ -1,0 +1,22 @@
+name: Update Gatus Configuration
+
+on:
+  push:
+    paths:
+      - '54/config/**'  # Replace with the path to the specific directory
+
+
+jobs:
+  run-ansible:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.event.inputs.environment }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run Ansible Playbook
+        run: |
+          ansible-playbook -i inventory 54/ansible/updateconfig.yml

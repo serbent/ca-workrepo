@@ -1,0 +1,40 @@
+---
+- name: Launch Docker Container on Remote VM
+  hosts: all
+  become: true
+  vars:
+    docker_image: "twinproduction/gatus" # Replace with the desired Docker image
+    container_name: "gatus-monitoring"
+    container_ports:
+      - "8080:8080" # Map container port 80 to host port 80
+    container_state: "started" # Desired state of the container: started, stopped, etc.
+
+  tasks:
+    - name: Ensure Docker is started and enabled
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    # Pull the specified Docker image
+    - name: Pull Docker image
+      community.docker.docker_image:
+        name: "{{ docker_image }}"
+        source: pull
+
+    # Ensure the container is running
+    - name: Run Docker container
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ docker_image }}"
+        published_ports: "{{ container_ports }}"
+        state: "{{ container_state }}"
+
+    # Verify the container is running (optional)
+    - name: Check running Docker containers
+      ansible.builtin.command: docker ps
+      register: docker_ps_output
+
+    - name: Display running containers
+      ansible.builtin.debug:
+        msg: "{{ docker_ps_output.stdout }}"

@@ -1,0 +1,36 @@
+---
+- name: Copy and mount a file to a Docker container
+  hosts: docker-host
+  become: true
+  vars:
+    docker_image: "twinproduction/gatus" # Replace with the desired Docker image
+    container_name: "gatus-monitoring"
+    container_ports:
+      - "8080:8080" # Map container port 80 to host port 80
+    container_state: "started" # Desired state of the container: started, stopped, etc.
+  tasks:
+    - name: Ensure the ~/config directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/config"
+        state: directory
+        mode: "0755"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+
+    - name: Copy the file to ~/config/config.yaml
+      ansible.builtin.copy:
+        src: 54/config/config.yaml  # Local file path on the Ansible controller
+        dest: "{{ ansible_env.HOME }}/config/config.yaml"  # Path in the target machine
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "0644"
+
+    - name: Run a Docker container with the file mounted
+      community.docker.docker_container:
+        name: my_docker_container
+        image: "{{ docker_image }}"         # Replace with your desired Docker image
+        state: "{{ container_state }}"     # Desired state of the container: started, stopped, etc.
+        volumes:
+          - "{{ ansible_env.HOME }}/config/config.yaml:/config/config.yaml:ro" # Mount the file as read-only
+        ports:
+          - "{{ container_ports }}"               # Map host port 8080 to container port 80
