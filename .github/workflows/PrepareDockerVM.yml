@@ -22,4 +22,4 @@ jobs:
         - uses: actions/checkout@v4
 
         - name: Prepare Docker VM with ansible
-          run: ansible-playbook -user ec2_user -i ${{ github.event.inputs.IP }}, ${{ github.event.inputs.workdir }}/playbook.yml
+          run: ansible-playbook -u ubuntu -i ${{ github.event.inputs.IP }}, playbook.yml
