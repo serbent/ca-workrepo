@@ -1,4 +1,4 @@
-name: 01.2 Prepare Docker VM with ansible
+name: 01.3 Run Gatus in Docker
 
 on:
   workflow_dispatch: 
@@ -31,4 +31,4 @@ jobs:
           
 
         - name: Prepare Docker VM with ansible
-          run: ansible-playbook -u ubuntu -i ${{ github.event.inputs.IP }}, playbook.yml
+          run: ansible-playbook -u ubuntu -i ${{ github.event.inputs.IP }}, runimage.yml

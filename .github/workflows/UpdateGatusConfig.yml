@@ -1,22 +1,16 @@
-name: 01.2 Prepare Docker VM with ansible
+name: 01.4 Update Gatus Configuration
 
 on:
-  workflow_dispatch: 
-    inputs:
-      IP:
-        type: string
-        description: IP Address of the machine
-        default:
-      workdir:
-        type: string
-        description: Path to Ansible code
-        default: 
+  push:
+    paths:
+      - '54/config/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ github.event.inputs.workdir }}
+        working-directory: 54/ansible
 
     steps:
         - uses: actions/checkout@v4
@@ -31,4 +25,4 @@ jobs:
           
 
         - name: Prepare Docker VM with ansible
-          run: ansible-playbook -u ubuntu -i ${{ github.event.inputs.IP }}, playbook.yml
+          run: ansible-playbook -u ubuntu -i ${{ github.event.inputs.IP }}, updateconfig.yml
