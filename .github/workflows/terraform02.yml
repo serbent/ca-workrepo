@@ -15,7 +15,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-      
+
     defaults:
       run:
         working-directory: ${{ github.event.inputs.environment }}
@@ -44,8 +44,12 @@ jobs:
       - name: Terraform plan  
         run: terraform plan -out=tfplan
 
-      - name: Terraform Chekov
-        run: chekov -d ${{ github.event.inputs.environment }}
+      - name: Test with Checkov
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: ${{ github.event.inputs.environment }}
+          framework: terraform
 
       - name: Terraform apply
         run: terraform apply -auto-approve tfplan
