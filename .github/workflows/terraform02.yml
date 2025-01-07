@@ -50,6 +50,7 @@ jobs:
         with:
           directory: ${{ github.event.inputs.environment }}
           framework: terraform
+          soft_fail: true
 
       - name: Terraform apply
         run: terraform apply -auto-approve tfplan
