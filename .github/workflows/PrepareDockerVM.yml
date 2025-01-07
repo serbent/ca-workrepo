@@ -21,5 +21,14 @@ jobs:
     steps:
         - uses: actions/checkout@v4
 
+        - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # Optionally, add known hosts to avoid SSH prompts
+          ssh-keyscan -H 35.158.140.211 >> ~/.ssh/known_hosts  # Replace with your VM's address
+          
+
         - name: Prepare Docker VM with ansible
           run: ansible-playbook -u ubuntu -i ${{ github.event.inputs.IP }}, playbook.yml
