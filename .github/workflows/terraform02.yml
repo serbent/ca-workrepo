@@ -7,9 +7,15 @@ on:
         type: string
         description: Path to Terraform code
         default: 50/terraform
+  
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      
     defaults:
       run:
         working-directory: ${{ github.event.inputs.environment }}
