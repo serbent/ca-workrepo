@@ -17,6 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4 
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::034362059178:role/github-actions-role
+          aws-region: eu-central-1
+
       - name: Terraform plan
         id: terraform-plan
         uses: hashicorp/setup-terraform@v1
