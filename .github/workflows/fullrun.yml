@@ -1,4 +1,4 @@
-name: 00.0 Full Run
+name: 01.0 Full Run
 
 on:
     workflow_dispatch:
