@@ -3,10 +3,6 @@ name: 01.2 Prepare Docker VM with ansible
 on:
   workflow_dispatch: 
     inputs:
-      IP:
-        type: string
-        description: IP Address of the machine
-        default:
       workdir:
         type: string
         description: Path to Ansible code
@@ -25,10 +21,7 @@ jobs:
           run: |
             mkdir -p ~/.ssh
             echo "${{ secrets.AWS_EC2_SSH_KEY }}" > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-            # Optionally, add known hosts to avoid SSH prompts
-            ssh-keyscan -H 35.158.140.211 >> ~/.ssh/known_hosts  # Replace with your VM's address
-          
+            chmod 600 ~/.ssh/id_rsa          
 
         - name: Prepare Docker VM with ansible
-          run: ansible-playbook -u ubuntu -i inventory playbook.yml
+          run: ansible-playbook -u ubuntu playbook.yml
