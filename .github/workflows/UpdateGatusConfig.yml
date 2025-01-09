@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     defaults:
       run:
         working-directory: 54/ansible
@@ -15,14 +18,17 @@ jobs:
     steps:
         - uses: actions/checkout@v4
 
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v3
+          with:
+            role-to-assume: arn:aws:iam::034362059178:role/github-actions-role
+            aws-region: eu-central-1
+
         - name: Set up SSH key
           run: |
             mkdir -p ~/.ssh
             echo "${{ secrets.AWS_EC2_SSH_KEY }}" > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-            # Optionally, add known hosts to avoid SSH prompts
-            ssh-keyscan -H 35.158.140.211 >> ~/.ssh/known_hosts  # Replace with your VM's address
-          
+            chmod 600 ~/.ssh/id_rsa          
 
         - name: Prepare Docker VM with ansible
           run: ansible-playbook -u ubuntu -i inventory updateconfig.yml
