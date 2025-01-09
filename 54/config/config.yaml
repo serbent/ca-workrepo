@@ -40,11 +40,11 @@ endpoints:
       - "[BODY] == 93.184.215.14"
       - "[DNS_RCODE] == NOERROR"
 
-  - name: icmp-ping
-    url: "icmp://example.org"
-    interval: 1m
-    conditions:
-      - "[CONNECTED] == true"
+  # - name: icmp-ping
+  #   url: "icmp://example.org"
+  #   interval: 1m
+  #   conditions:
+  #     - "[CONNECTED] == true"
 
 
   
