@@ -1,0 +1,22 @@
+name: 00.0 Full Run
+
+on:
+    workflow_dispatch:
+
+jobs:
+    createInfra:
+        runs-on: ubuntu-latest
+
+        steps:
+        # Step 1: Run terraform02.yml
+        - name: Create Infrastructure
+          uses: ./github/workflows/terraform02.yml
+
+        # Step 2: Prepare Docker VM
+        - name: Prepare Docker VM
+          uses: ./github/workflows/PrepareDockerVM.yml
+
+        # Step 3: Run Container
+        - name: Run Container
+          uses: ./github/workflows/RunContainer.yml
+            
