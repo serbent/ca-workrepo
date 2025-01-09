@@ -30,5 +30,5 @@ jobs:
             ssh-keyscan -H 35.158.140.211 >> ~/.ssh/known_hosts  # Replace with your VM's address
           
 
-        - name: Prepare Docker VM with ansible
-          run: ansible-playbook -u ubuntu -i ${{ github.event.inputs.IP }}, runimage.yml
+        - name: Run the container
+          run: ansible-playbook -u ubuntu -i inventory runimage.yml

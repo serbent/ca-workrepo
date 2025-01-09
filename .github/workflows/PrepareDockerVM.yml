@@ -31,4 +31,4 @@ jobs:
           
 
         - name: Prepare Docker VM with ansible
-          run: ansible-playbook -u ubuntu -i ${{ github.event.inputs.IP }}, playbook.yml
+          run: ansible-playbook -u ubuntu -i inventory playbook.yml
