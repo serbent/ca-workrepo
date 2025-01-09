@@ -6,7 +6,7 @@ on:
       workdir:
         type: string
         description: Path to Ansible code
-        default: 
+        default: 54/ansible
 jobs:
   build:
     env:
