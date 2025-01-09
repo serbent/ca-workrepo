@@ -30,7 +30,6 @@ jobs:
             python3 -m pip install ansible ansible-core boto3 botocore
         
         - name: Install amazon-aws pluigin
-          shell: bash
           run : ansible-galaxy collection install amazon.aws
 
         - name: Set up SSH key
