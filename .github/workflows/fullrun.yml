@@ -11,7 +11,7 @@ jobs:
         - uses: actions/checkout@v2
         # Step 1: Run terraform02.yml
         - name: Create Infrastructure
-          uses: ./.github/workflows/terraform02.yml
+          uses: ./.github/workflows/terraform02
 
         # Step 2: Prepare Docker VM
         - name: Prepare Docker VM
