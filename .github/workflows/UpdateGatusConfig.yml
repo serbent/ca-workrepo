@@ -31,4 +31,4 @@ jobs:
             chmod 600 ~/.ssh/id_rsa          
 
         - name: Prepare Docker VM with ansible
-          run: ansible-playbook -u ubuntu -i inventory updateconfig.yml
+          run: ansible-playbook -u ubuntu  updateconfig.yml
