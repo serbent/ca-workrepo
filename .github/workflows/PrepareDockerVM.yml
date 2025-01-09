@@ -24,8 +24,7 @@ jobs:
 
         - name: Install Ansible and Dependencies
           run: |
-            python3 -m pip install --upgrade pip
-            python3 -m pip install ansible-core boto3 botocore amazon.aws
+            python3 -m pip install ansible ansible-core boto3 botocore
 
         - name: Set up SSH key
           run: |
