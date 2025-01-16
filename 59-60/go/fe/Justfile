@@ -1,0 +1,35 @@
+# Variables
+REGISTRY := "serbent"
+FRONTEND_IMAGE := "ca-go-app"
+TAG := "0.1"
+FULL_IMAGE_NAME := "${{REGISTRY}}/${{FRONTEND_IMAGE}}:$S{{TAG}}"
+
+# Build the Docker image
+build:
+    docker build -t {{FULL_IMAGE_NAME}} .
+
+# Run the Docker container
+run:
+    docker run --name frontend -p 8081:8081 {{FULL_IMAGE_NAME}}
+
+# Push the Docker image to the registry
+push:
+    docker push {{FULL_IMAGE_NAME}}
+
+# Clean up dangling Docker images
+clean:
+    docker image prune -f
+
+# Full pipeline: Build, run, and push
+deploy:
+    just build
+    just push
+
+# Usage info
+default:
+    @echo "Available commands:"
+    @echo "  just build       - Build the Docker image"
+    @echo "  just run         - Run the Docker container locally"
+    @echo "  just push        - Push the Docker image to the registry"
+    @echo "  just clean       - Clean up dangling Docker images"
+    @echo "  just deploy      - Build and push the Docker image"

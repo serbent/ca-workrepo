@@ -1,0 +1,35 @@
+# Define variables
+registry := "serbent"
+backend_image := "ca-backend"
+tag := "0.1"
+full_image_name := "{registry}/{backend_image}:{tag}"
+
+# Build the Docker image
+build:
+    docker build -t {{full_image_name}} .
+
+# Run the Docker container
+run:
+    docker run -p 8080:8080 {{full_image_name}}
+
+# Push the Docker image to the registry
+push:
+    docker push {{full_image_name}}
+
+# Clean up dangling Docker images
+clean:
+    docker image prune -f
+
+# Full pipeline: Build, run, and push
+deploy:
+    just build
+    just push
+
+# Usage info
+default:
+    @echo "Available commands:"
+    @echo "  just build       - Build the Docker image"
+    @echo "  just run         - Run the Docker container locally"
+    @echo "  just push        - Push the Docker image to the registry"
+    @echo "  just clean       - Clean up dangling Docker images"
+    @echo "  just deploy      - Build and push the Docker image"

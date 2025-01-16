@@ -14,3 +14,10 @@ Create a service.
 Execute `minikube ip` to get the IP.
 Execute `kubectl get svc` to get the NodePort that the application is running. 
 Now you can access the application on `MinikubeIP:NodePort`.
+
+
+## Tasks 
+### Create a deployment
+Create a deployment with 5 replicas. <br>
+Create a service with type NodePort. <br>
+Connect to the application.<br>
