@@ -19,7 +19,7 @@ module "eks_al2023" {
   self_managed_node_groups = {
     example = {
       ami_type      = "AL2023_x86_64_STANDARD"
-      instance_type = "m6i.large"
+      instance_type = "t3.small"
 
       min_size = 2
       max_size = 5
