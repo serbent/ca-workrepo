@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
-  replicas: 3
+  replicas: 12
   selector:
     matchLabels:
       app: nginx
@@ -22,6 +22,8 @@ spec:
           mountPath: /etc/nginx/conf.d
         - name: secret-volume
           mountPath: /etc/nginx/secrets
+        - name: data-volume
+          mountPath: /usr/share/nginx/html
       volumes:
       - name: config-volume
         configMap:
@@ -29,3 +31,6 @@ spec:
       - name: secret-volume
         secret:
           secretName: nginx-secret
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: example-pvc
