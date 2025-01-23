@@ -21,7 +21,7 @@ module "eks" {
             max_size = 5
             # This value is ignored after the initial creation
             # https://github.com/bryantbiggs/eks-desired-size-hack
-            desired_size = 3
+            desired_size = 5
             }
   }
     cluster_endpoint_public_access = true
