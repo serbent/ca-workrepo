@@ -15,13 +15,13 @@ module "eks" {
     self_managed_node_groups = {
         calesson = {
             ami_type      = "AL2_x86_64"
-            instance_type = "t2.micro"
+            instance_type = "m6i.large"
 
             min_size = 2
             max_size = 5
             # This value is ignored after the initial creation
             # https://github.com/bryantbiggs/eks-desired-size-hack
-            desired_size = 5
+            desired_size = 3
             }
   }
     cluster_endpoint_public_access = true
