@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  repository: twinproduction/gatus
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+config:
+  endpoints:
+    - name: Example
+      url: "https://example.com"
+      interval: "5m"
+      conditions:
+        - "[STATUS] == 200"
