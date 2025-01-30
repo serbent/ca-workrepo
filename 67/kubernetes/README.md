@@ -6,7 +6,7 @@
 <br>
 `helm upgrade --install loki --namespace=loki-stack grafana/loki-stack --values loki-stack-values.yaml --create-namespace`
 <br>
-`helm upgrade --install grafana-agent --namespace=loki grafana/grafana-agent --values grafana-agent-values.yaml`
+`helm upgrade --install grafana-agent --namespace=loki-stack grafana/grafana-agent --values grafana-agent-values.yaml`
 <br>
 `kubectl port-forward svc/loki-grafana 3000:80 -n loki-stack`
 <br>
