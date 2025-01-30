@@ -1,18 +1,19 @@
 agent:
-  mode: 'flow'
-  configMap:
-    create: true
-    content: |      
-      logging {
-        level  = "info"
-        format = "logfmt"
-      }
-      loki.source.kubernetes_events "events" {
-        log_format = "json"
-        forward_to = [loki.write.loki_endpoint.receiver]
-      }
-      loki.write "loki_endpoint" {
-        endpoint {
-          url = "http://loki.loki-stack:3100/loki/api/v1/push"
-        }
-      }
+  mode: "flow"
+  configMap:
+    create: true
+    content: |
+      logging {
+        level  = "info"
+        format = "logfmt"
+      }
+      loki.source.kubernetes_events "events" {
+        log_format = "json"
+        forward_to = [loki.write.loki_endpoint.receiver]
+      }
+      loki.write "loki_endpoint" {
+        endpoint {
+          url = "http://loki.loki-stack:3100/loki/api/v1/push"
+        }
+      }
+
