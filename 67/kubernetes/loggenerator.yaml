@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: log-generator
-          image: shai2426/log-generator:latest
+          image: chentex/random-logger:latest
