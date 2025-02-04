@@ -1,5 +1,9 @@
 # Lecture 69. GOLANG
 
+## Commands
+
+`go run filename.go` - run the program
+`go build filename.go` - build the program. Produces an executable that you can run.
 
 ## Tasks
 
