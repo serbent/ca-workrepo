@@ -18,3 +18,4 @@ var choice int
 fmt.Scanln(&choice)
 switch choice {
 ```
+use `for` loop to display the menu indefinetly.
