@@ -24,7 +24,7 @@ use `for` loop to display the menu indefinetly.
 Create an application to find all prime numbers up to a number entered by the user. 
 
 
-### 3. Fibonaci
-Display fibonaci number up to iteration entered by user. 
+### 3. Fibonacci
+Display fibonacci number up to iteration entered by user. 
 
-Fibonaci sequence: 1,1,2,3,5,8,13,21,34...
+Fibonacci sequence: 1,1,2,3,5,8,13,21,34...
