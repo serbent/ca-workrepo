@@ -12,3 +12,10 @@ Create a web server with 3 endpoint
 * people (/people)
 * * Display the list of people (use file from lecture 72)
 
+### 02.
+
+Upgrade your application with logging
+* Handle different types of messages. 
+* * Errors - should have the PrefiX ERROR
+* * Info - should have prefix INFO
+* Output logs to a file. 
